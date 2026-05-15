@@ -11,44 +11,57 @@ import Work from "./Work";
 import setSplitText from "./utils/splitText";
 import { initialFX } from "./utils/initialFX";
 
-/* ─── Skill list ──────────────────────────────────────────────────────────── */
+/* ─── Skill list with real CDN logos ─────────────────────────────────────── */
+const SI = (i: string) => `https://skillicons.dev/icons?i=${i}`;
+const DV = (name: string, variant = "original") =>
+  `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-${variant}.svg`;
+
 const SKILLS = [
-  { name: "Python",         icon: "🐍", color: "#3776ab" },
-  { name: "JavaScript",     icon: "JS", color: "#f7df1e" },
-  { name: "TypeScript",     icon: "TS", color: "#3178c6" },
-  { name: "HTML",           icon: "🌐", color: "#e34c26" },
-  { name: "CSS",            icon: "🎨", color: "#1572b6" },
-  { name: "PHP",            icon: "🐘", color: "#8892bf" },
-  { name: "Go",             icon: "Go", color: "#00add8" },
-  { name: "React",          icon: "⚛️", color: "#61dafb" },
-  { name: "React Native",   icon: "📱", color: "#61dafb" },
-  { name: "Expo",           icon: "📦", color: "#e1e1e1" },
-  { name: "Node.js",        icon: "🟢", color: "#339933" },
-  { name: "Express.js",     icon: "Ex", color: "#aaaaaa" },
-  { name: "PostgreSQL",     icon: "🐘", color: "#336791" },
-  { name: "MySQL",          icon: "🗄️", color: "#4479a1" },
-  { name: "MongoDB",        icon: "🍃", color: "#47a248" },
-  { name: "SQL",            icon: "DB", color: "#0078d4" },
-  { name: "Git",            icon: "🔀", color: "#f05032" },
-  { name: "GitHub",         icon: "🐙", color: "#e1e1e1" },
-  { name: "GitHub Actions", icon: "⚙️", color: "#2088ff" },
-  { name: "Vercel",         icon: "▲",  color: "#e1e1e1" },
-  { name: "Render",         icon: "🚀", color: "#46e3b7" },
-  { name: "REST APIs",      icon: "🔗", color: "#ff6b35" },
-  { name: "JWT Auth",       icon: "🔑", color: "#d63aff" },
-  { name: "Google OAuth",   icon: "🔐", color: "#4285f4" },
-  { name: "API Keys",       icon: "🗝️", color: "#ec4899" },
-  { name: "Bcrypt",         icon: "🔒", color: "#7b61ff" },
-  { name: "Axios",          icon: "Ax", color: "#5a29e4" },
-  { name: "Postman",        icon: "📮", color: "#ff6c37" },
-  { name: "Thunder Client", icon: "⚡", color: "#743de0" },
-  { name: "VS Code",        icon: "💻", color: "#007acc" },
-  { name: "Figma",          icon: "🎯", color: "#f24e1e" },
-  { name: "Canva",          icon: "🖼️", color: "#00c4cc" },
-  { name: "Pull Requests",  icon: "🔃", color: "#7b61ff" },
-  { name: "Code Review",    icon: "👁️", color: "#a78bfa" },
-  { name: "CI Checks",      icon: "✅", color: "#22c55e" },
-  { name: "Documentation",  icon: "📝", color: "#94a3b8" },
+  // Languages
+  { name: "Python",         src: SI("python"),        color: "#3776ab" },
+  { name: "JavaScript",     src: SI("js"),             color: "#f7df1e" },
+  { name: "TypeScript",     src: SI("ts"),             color: "#3178c6" },
+  { name: "HTML",           src: SI("html"),           color: "#e34c26" },
+  { name: "CSS",            src: SI("css"),            color: "#1572b6" },
+  { name: "PHP",            src: SI("php"),            color: "#8892bf" },
+  { name: "Go",             src: SI("go"),             color: "#00add8" },
+  // Frontend / Mobile
+  { name: "React",          src: SI("react"),          color: "#61dafb" },
+  { name: "React Native",   src: SI("react"),          color: "#61dafb" },
+  { name: "Expo",           src: DV("expo","plain"),   color: "#e1e1e1" },
+  // Backend
+  { name: "Node.js",        src: SI("nodejs"),         color: "#339933" },
+  { name: "Express.js",     src: SI("express"),        color: "#aaaaaa" },
+  // Databases
+  { name: "PostgreSQL",     src: SI("postgres"),       color: "#336791" },
+  { name: "MySQL",          src: SI("mysql"),          color: "#4479a1" },
+  { name: "MongoDB",        src: SI("mongodb"),        color: "#47a248" },
+  { name: "SQL",            src: DV("azuresqldatabase","plain"), color: "#0078d4" },
+  // Version Control
+  { name: "Git",            src: SI("git"),            color: "#f05032" },
+  { name: "GitHub",         src: SI("github"),         color: "#e1e1e1" },
+  { name: "GitHub Actions", src: SI("githubactions"),  color: "#2088ff" },
+  // Deployment
+  { name: "Vercel",         src: SI("vercel"),         color: "#e1e1e1" },
+  { name: "Render",         src: "https://images.seeklogo.com/logo-png/52/1/render-logo-png_seeklogo-525912.png", color: "#46e3b7" },
+  // Auth & APIs
+  { name: "REST APIs",      src: null, icon: "API",    color: "#ff6b35" },
+  { name: "JWT Auth",       src: "https://jwt.io/img/logo-asset.svg", color: "#d63aff" },
+  { name: "Google OAuth",   src: "https://www.gstatic.com/marketing/webpage/images/logos/googleg/googleg.svg", color: "#4285f4" },
+  { name: "API Keys",       src: null, icon: "🗝️",    color: "#ec4899" },
+  { name: "Bcrypt",         src: null, icon: "🔒",     color: "#7b61ff" },
+  { name: "Axios",          src: "https://axios-http.com/assets/logo.svg", color: "#5a29e4" },
+  // Tools
+  { name: "Postman",        src: SI("postman"),        color: "#ff6c37" },
+  { name: "Thunder Client", src: null, icon: "⚡",     color: "#743de0" },
+  { name: "VS Code",        src: SI("vscode"),         color: "#007acc" },
+  { name: "Figma",          src: SI("figma"),          color: "#f24e1e" },
+  { name: "Canva",          src: DV("canva","plain"),  color: "#00c4cc" },
+  // Workflow
+  { name: "Pull Requests",  src: null, icon: "PR",     color: "#7b61ff" },
+  { name: "Code Review",    src: null, icon: "CR",     color: "#a78bfa" },
+  { name: "CI Checks",      src: SI("githubactions"),  color: "#22c55e" },
+  { name: "Documentation",  src: null, icon: "📝",    color: "#94a3b8" },
 ];
 
 /* ─── Bubble hover glow (pure CSS-in-JS, no class dependency) ────────────── */
@@ -100,13 +113,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             {/* ── My Work (5 horizontal scroll cards) ─────────────── */}
             <Work />
 
-            {/* ── Spacer: pushes Tech Stack below Work's natural position ─ */}
-            {/* With ScrollSmoother speed:1.7, this 100vh gap ensures Work    */}
-            {/* is fully above the viewport before Tech Stack enters.          */}
+            {/* ── Spacer (30vh): clean gap after Work, prevents overlap ── */}
             <div
               aria-hidden="true"
               style={{
-                height: "100vh",
+                height: "30vh",
                 width: "100%",
                 backgroundColor: "#0b080c",
                 display: "block",
@@ -201,7 +212,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
                       }
                     }}
                   >
-                    {/* Circle bubble */}
+                    {/* Circle bubble — uses real logo if available */}
                     <div
                       className="ts-bubble"
                       style={{
@@ -210,7 +221,35 @@ const MainContainer = ({ children }: PropsWithChildren) => {
                         border: `1.5px solid ${skill.color}33`,
                       }}
                     >
-                      {skill.icon}
+                      {skill.src ? (
+                        <img
+                          src={skill.src}
+                          alt={skill.name}
+                          style={{ width: 46, height: 46, objectFit: "contain" }}
+                          onError={(e) => {
+                            // If CDN image fails, hide img and show fallback
+                            const el = e.currentTarget as HTMLImageElement;
+                            el.style.display = "none";
+                            const fb = el.nextElementSibling as HTMLElement;
+                            if (fb) fb.style.display = "flex";
+                          }}
+                        />
+                      ) : null}
+                      <span
+                        style={{
+                          display: skill.src ? "none" : "flex",
+                          fontSize: (skill.icon ?? "").length > 2 ? "13px" : "22px",
+                          fontWeight: 700,
+                          color: "rgba(255,255,255,0.88)",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          width: "100%",
+                          height: "100%",
+                          textAlign: "center",
+                        }}
+                      >
+                        {skill.icon ?? skill.name.slice(0, 3).toUpperCase()}
+                      </span>
                     </div>
 
                     {/* Label */}
