@@ -60,20 +60,18 @@ const Work = () => {
       const padding =
         parseInt(window.getComputedStyle(boxes[0]).padding) / 2;
 
-      // Base distance + one full card-width buffer so card 05 is completely
-      // in view before the pin releases
-      return (
-        rect.width * boxes.length -
-        (rectLeft + parentWidth) +
-        padding +
-        rect.width
-      );
+      // Natural distance to show Card 05 fully.
+      // Work's z-index:20 background visually covers Tech Stack during pin.
+      const base =
+        rect.width * boxes.length - (rectLeft + parentWidth) + padding;
+      return base;
     }
 
     function paintSpacer(self: ScrollTrigger) {
       const spacer = (self.pin as HTMLElement)?.parentElement;
       if (spacer?.classList.contains("gsap-pin-spacer")) {
         spacer.style.backgroundColor = "#0b080c";
+        spacer.style.zIndex = "20";
       }
     }
 
@@ -95,7 +93,7 @@ const Work = () => {
           invalidateOnRefresh: true,
           id: "work",
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore — onInit exists at runtime but not in these TS types
+          // @ts-ignore
           onInit: paintSpacer,
           onRefresh: paintSpacer,
         },

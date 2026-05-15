@@ -8,21 +8,22 @@ const WhatIDo = () => {
     containerRef.current[index] = el;
   };
   useEffect(() => {
-    if (ScrollTrigger.isTouch) {
-      containerRef.current.forEach((container) => {
-        if (container) {
+    const handlers: (() => void)[] = [];
+
+    containerRef.current.forEach((container) => {
+      if (container) {
+        // On touch: remove hover class so only click is used
+        if (ScrollTrigger.isTouch) {
           container.classList.remove("what-noTouch");
-          container.addEventListener("click", () => handleClick(container));
         }
-      });
-    }
-    return () => {
-      containerRef.current.forEach((container) => {
-        if (container) {
-          container.removeEventListener("click", () => handleClick(container));
-        }
-      });
-    };
+        // Always allow click to toggle expand (desktop + touch)
+        const handler = () => handleClick(container);
+        container.addEventListener("click", handler);
+        handlers.push(() => container.removeEventListener("click", handler));
+      }
+    });
+
+    return () => handlers.forEach((cleanup) => cleanup());
   }, []);
   return (
     <div className="whatIDO">

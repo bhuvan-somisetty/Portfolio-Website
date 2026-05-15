@@ -100,22 +100,33 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             {/* ── My Work (5 horizontal scroll cards) ─────────────── */}
             <Work />
 
-            {/* ── Tech Stack ──────────────────────────────────────── */}
-            {/*
-              PLACEMENT: This div sits in the normal DOM flow, AFTER the
-              Work pin-spacer. GSAP's pin spacer (created by Work) ends
-              BEFORE this element, so Tech Stack is never inside or behind
-              the pin container. It renders purely as a standard block section.
-            */}
+            {/* ── Spacer: pushes Tech Stack below Work's natural position ─ */}
+            {/* With ScrollSmoother speed:1.7, this 100vh gap ensures Work    */}
+            {/* is fully above the viewport before Tech Stack enters.          */}
+            <div
+              aria-hidden="true"
+              style={{
+                height: "100vh",
+                width: "100%",
+                backgroundColor: "#0b080c",
+                display: "block",
+              }}
+            />
+
+            {/* ── Tech Stack ──────────────────────────────────────────────── */}
             <div
               id="tech-stack"
               style={{
                 width: "100%",
-                padding: "100px 6vw",
-                marginTop: "80px",
+                minHeight: "100vh",
+                paddingTop: "120px",
+                paddingBottom: "100px",
+                paddingLeft: "6vw",
+                paddingRight: "6vw",
                 boxSizing: "border-box",
                 backgroundColor: "#0b080c",
-                borderTop: "1px solid rgba(160,100,255,0.15)",
+                borderTop: "1px solid rgba(160,100,255,0.18)",
+                position: "relative",
               }}
             >
               {/* Heading */}
