@@ -113,11 +113,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             {/* ── My Work (5 horizontal scroll cards) ─────────────── */}
             <Work />
 
-            {/* ── Spacer (30vh): clean gap after Work, prevents overlap ── */}
+            {/* ── Spacer: 95vh gap after Work (speed:1.7 needs this to clear Work) ── */}
             <div
               aria-hidden="true"
               style={{
-                height: "30vh",
+                height: "95vh",
                 width: "100%",
                 backgroundColor: "#0b080c",
                 display: "block",
@@ -144,17 +144,27 @@ const MainContainer = ({ children }: PropsWithChildren) => {
               <h2
                 style={{
                   textAlign: "center",
-                  fontSize: "clamp(36px, 5vw, 68px)",
-                  fontWeight: 400,
-                  margin: "0 0 14px",
-                  background: "linear-gradient(160deg,#c2a4ff 0%,#ffffff 60%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  lineHeight: 1.1,
+                  fontSize: "clamp(56px, 8vw, 110px)",
+                  fontWeight: 800,
+                  margin: "0 0 18px",
+                  lineHeight: 1,
+                  letterSpacing: "-2px",
+                  color: "#ffffff",
+                  filter: "drop-shadow(0 0 50px rgba(168,85,247,0.5))",
                 }}
               >
-                My <strong style={{ fontWeight: 700 }}>Tech Stack</strong>
+                <span style={{ color: "#ffffff" }}>Tech</span>
+                <span
+                  style={{
+                    background: "linear-gradient(135deg, #c084fc 0%, #a855f7 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    color: "#a855f7",
+                  }}
+                >
+                  Stack
+                </span>
               </h2>
 
               {/* Subtitle */}
