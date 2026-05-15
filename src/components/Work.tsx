@@ -74,7 +74,6 @@ const Work = () => {
       const spacer = (self.pin as HTMLElement)?.parentElement;
       if (spacer?.classList.contains("gsap-pin-spacer")) {
         spacer.style.backgroundColor = "#0b080c";
-        spacer.style.zIndex = "20";
       }
     }
 

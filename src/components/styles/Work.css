@@ -7,17 +7,15 @@
   color: var(--accentColor);
 }
 
-/* Guarantee GSAP pin spacer for Work is never transparent */
+/* Pin spacer must have solid background to hide content scrolling behind Work */
 .gsap-pin-spacer:has(#work) {
   background-color: #0b080c !important;
-  z-index: 20 !important;
 }
 
 .work-section {
   height: 100vh;
   box-sizing: border-box;
   position: relative;
-  z-index: 20;
   background-color: var(--backgroundColor);
   overflow: hidden;
 }
